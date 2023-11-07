@@ -6,10 +6,14 @@ import glob
 with np.load('calibration_data.npz') as X:
     mtx, dist = [X[i] for i in ('mtx', 'dist')]
 
-# Define the path to the images you want to undistort
-images_path = "D:\\openCV\\*.png" 
-# Use glob to get all the images with .png extension
-images = glob.glob(images_path)
+# Define the pattern to match .png files in the current directory
+images_path = "./*.png"
+
+# Use glob to get all the images with .png extension in the current directory
+all_images = glob.glob(images_path)
+
+# Exclude "redhawk.png" from the list of images
+images = [img for img in all_images if "redhawk.png" not in img]
 
 # Check if images list is empty
 if not images:
