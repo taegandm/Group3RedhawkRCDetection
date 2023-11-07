@@ -16,10 +16,14 @@ objp[:, :2] = np.mgrid[0:10, 0:7].T.reshape(-1, 2) * square_size
 objpoints = []  # 3d points in real world space
 imgpoints = []  # 2d points in image plane.
 
-# Define the path to the images
-images_path = "D:\\openCV\\*.png" 
-# Use glob to get all the images with .png extension
-images = glob.glob(images_path)
+# Define the pattern to match .png files in the current directory
+images_path = "./*.png"
+
+# Use glob to get all the images with .png extension in the current directory
+all_images = glob.glob(images_path)
+
+# Exclude "redhawk.png" from the list of images
+images = [img for img in all_images if "redhawk.png" not in img]
 
 # Check if images list is empty
 if not images:
