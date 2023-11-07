@@ -31,6 +31,6 @@ for i, fname in enumerate(images):
     dst = dst[y:y+h, x:x+w]
     
     # Save the undistorted image
-    cv2.imwrite(f"D:\\openCV\\undistorted_{i}.png", dst)
+    cv2.imwrite(f"./undistorted_{i}.png", dst)
 
 print("Undistortion completed. Undistorted images saved.")
