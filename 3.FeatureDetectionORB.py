@@ -12,7 +12,7 @@ kp_template, desc_template = orb.detectAndCompute(template_image, None)
 # Define the video capture object
 cap = cv2.VideoCapture(0)
 
-# Set the resolution to 1920x1080
+# Set the resolution to 1280*720
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
