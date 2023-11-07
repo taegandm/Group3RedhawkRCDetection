@@ -14,8 +14,8 @@ kp_template, desc_template = akaze.detectAndCompute(template_image, None)
 cap = cv2.VideoCapture(0)
 
 # Set the resolution to 1920x1080
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
 # Define the brute-force matcher
 bf = cv2.BFMatcher(cv2.DescriptorMatcher_BRUTEFORCE_HAMMING)
