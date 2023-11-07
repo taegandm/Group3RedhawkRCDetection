@@ -35,9 +35,9 @@ kp_template, desc_template = orb.detectAndCompute(template_image, None)
 
 # Capture video stream from the webcam
 video = cv2.VideoCapture(0)
-# Set the resolution to 1920x1080
-video.set(cv2.CAP_PROP_FRAME_WIDTH, 1920)
-video.set(cv2.CAP_PROP_FRAME_HEIGHT, 1080)
+# Set the resolution to a certain resolution
+video.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+video.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
 
 # Known dimensions of the object (letter-size paper in inches)
 object_height = 250  # letter size paper in mm
