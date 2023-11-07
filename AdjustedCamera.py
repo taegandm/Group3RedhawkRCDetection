@@ -9,9 +9,9 @@ dist = calibration_data['dist']
 # Start video capture from the webcam
 cap = cv2.VideoCapture(0)
 
-# Set the resolution to 1920x1080
-cap.set(3, 1920)  # Width
-cap.set(4, 1080)  # Height
+# Set the resolution to 1280x720
+cap.set(3, 1280)  # Width
+cap.set(4, 720)  # Height
 
 while True:
     # Capture frame-by-frame
