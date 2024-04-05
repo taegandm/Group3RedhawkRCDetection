@@ -104,10 +104,11 @@ while True:
     if last_box is not None:  # Draw the last detected box
         frame = cv2.polylines(frame, [np.int32(last_box)], True, (0, 255, 0), 3, cv2.LINE_AA)
     
-    cv2.imshow('frame', frame)
+    cv2.imshow('ESC or Q for Exit', frame)
     
-    # Exit loop if 'q' is pressed
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    # Exit loop if 'q' or 'Q' or 'ESC' is pressed
+    key = cv2.waitKey(1) & 0xFF
+    if key == 27 or key == ord('q') or key == ord('Q'):
         break
 
 # Release the video capture object and close all windows
