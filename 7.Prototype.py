@@ -67,11 +67,14 @@ if template_image is None:
 
 kp_template, desc_template = sift.detectAndCompute(template_image, None)
 
-# Capture video stream from the webcam
-video = cv2.VideoCapture(0)
-# Set the resolution for the best result
-video.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-video.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+# Initialize the camera
+cap = cv2.VideoCapture(0)  # '0' is the default value for the primary camera
+
+# Set the resolution
+desired_width = 640
+desired_height = 480
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, desired_width)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, desired_height)
 
 # Known dimensions of the object (letter-size paper in inches)
 object_height = 250  # letter size paper in mm
