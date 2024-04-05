@@ -9,12 +9,14 @@ template_image = cv2.imread('Redhawk.png', 0)
 # Detect keypoints and descriptors in the template image
 kp_template, desc_template = orb.detectAndCompute(template_image, None)
 
-# Define the video capture object
+# Define the video Camera
 cap = cv2.VideoCapture(0)
 
-# Set the resolution to 1280*720
-cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
-cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+# Define the video Resolution
+desired_width = 640
+desired_height = 480
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, desired_width)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, desired_height)
 
 # Define the brute-force matcher
 bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
@@ -65,10 +67,11 @@ while True:
         frame_counter = 0
 
     # Display the frame
-    cv2.imshow('Frame', frame)
+    cv2.imshow('ESC or Q for Exit', frame)
     
-    # Exit loop if 'q' is pressed
-    if cv2.waitKey(1) & 0xFF == ord('q'):
+    # Exit loop if 'q' or 'Q' or 'ESC' is pressed
+    key = cv2.waitKey(1) & 0xFF
+    if key == 27 or key == ord('q') or key == ord('Q'):
         break
 
 # Release the video capture object and close all windows
