@@ -17,9 +17,9 @@ while True:
     ret, frame = cap.read()
 
     # Display the resulting frame
-    cv2.imshow('Enter to Capture, Esc to Quit', frame)
+    cv2.imshow('Enter to Capture, Esc or Q to Quit', frame)
 
-    # Wait for the Enter or Esc key to be pressed
+    # Wait for the Enter or Esc or Q key to be pressed
     key = cv2.waitKey(1)
     if key == 13:  # 13 is the Enter Key
         img_name = f"opencv_frame_{counter}_{desired_height}p.png"
@@ -27,10 +27,10 @@ while True:
         print(f"{img_name} written!")
         counter += 1
 
-    # Break the loop with the 'Esc' key
-    if key == 27:  # 27 is the Esc Key
+    # Exit loop if 'q' or 'Q' or 'ESC' is pressed
+    key = cv2.waitKey(1) & 0xFF
+    if key == 27 or key == ord('q') or key == ord('Q'):
         break
-
 # When everything is done, release the capture
 cap.release()
 cv2.destroyAllWindows()
