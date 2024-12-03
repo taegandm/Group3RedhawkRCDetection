@@ -90,12 +90,25 @@ frame_interval = 5  # Process every 5 frames
 Drive = 90
 Angle = 90
 
+# Function to dynamically adjust brightness
+def adjust_brightness(frame, threshold=100):
+    # Convert the frame to grayscale to calculate brightness
+    gray_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    # Calculate the average brightness of the frame
+    avg_brightness = np.mean(gray_frame)
+    if avg_brightness < threshold:
+        frame = cv2.convertScaleAbs(frame, alpha=1.5, beta=30)  # Increase brightness
+    return frame
+
 # Main loop for video processing
 while True:
     ret, frame = video.read()
     if not ret:
         break
     
+    # Dynamically adjust the brightness if the frame is too dark
+    frame = adjust_brightness(frame)
+
     # Increment the frame counter
     frame_counter += 1    
     # Process the frame when frame_counter reaches the interval
@@ -139,15 +152,28 @@ while True:
                 else:
                     Drive = 100
                     print("Forward")
-                # Steering setting
+
+                # Steering setting with smooth adjustments#########################################
                 if str(position) == 'Right' and midline_distance > 100:
-                    Angle = 135
-                    print("Right")
+                # Gradually adjust the angle to the right by 10 degrees increments
+                    if Angle < 135:
+                        Angle += 10  # Increase the angle gradually to the right
+                    print(f"Adjusting right: Angle = {Angle}")
+                    # Reduce speed when turning
+                    Drive = 80  # Lower speed when turning right
                 elif str(position) == 'Left' and midline_distance > 100:
-                    Angle = 45
-                    print("Left")
+                # Gradually adjust the angle to the left by 10 degrees increments
+                    if Angle > 45:
+                        Angle -= 10  # Decrease the angle gradually to the left
+                    print(f"Adjusting left: Angle = {Angle}")
+                    # Reduce speed when turning
+                    Drive = 80  # Lower speed when turning left
                 else:
-                    Angle= 90
+                    Angle = 90  # Centered position
+                    print("Centered")
+                    # Increase speed when going straight
+                    Drive = 100  # Higher speed when moving straight
+
                 # Send speed and steering to RC
                 send_command(Angle, Drive)
                 

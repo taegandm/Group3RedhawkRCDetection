@@ -24,7 +24,7 @@ bf = cv2.BFMatcher(cv2.NORM_HAMMING, crossCheck=True)
 # Counter for the frames
 frame_counter = 0
 # Specify the interval for frame processing (n)
-frame_interval = 10  # Change n to your desired interval
+frame_interval = 10  #27 Change n to your desired interval
 
 while True:
     # Read the current frame from the video capture object
